@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guohualife.pm.requirement.dao.RequirementInFactdateMapper" >
+  <resultMap id="BaseResultMap" type="com.guohualife.pm.requirement.mode.RequirementInFactdate" >
+    <id column="REQUIREMENTNEWPLANID" property="requirementnewplanid" jdbcType="DECIMAL" />
+    <result column="REQUIREMENTID" property="requirementid" jdbcType="DECIMAL" />
+    <result column="INFACTANALYSISSTARTDATE" property="infactanalysisstartdate" jdbcType="TIMESTAMP" />
+    <result column="INFACTANALYSISENDDATE" property="infactanalysisenddate" jdbcType="TIMESTAMP" />
+    <result column="INFACTDEVELOPSTARTDATE" property="infactdevelopstartdate" jdbcType="TIMESTAMP" />
+    <result column="INFACTDEVELOPENDDATE" property="infactdevelopenddate" jdbcType="TIMESTAMP" />
+    <result column="INFACTDATTESTSTARTDATE" property="infactdatteststartdate" jdbcType="TIMESTAMP" />
+    <result column="INFACTDATTESTENDDATE" property="infactdattestenddate" jdbcType="TIMESTAMP" />
+    <result column="INFACTUATTESTSTARTDATE" property="infactuatteststartdate" jdbcType="TIMESTAMP" />
+    <result column="INFACTUATTESTENDDATE" property="infactuattestenddate" jdbcType="TIMESTAMP" />
+    <result column="INFACTFINISHDATE" property="infactfinishdate" jdbcType="TIMESTAMP" />
+    <result column="MAKEDATE" property="makedate" jdbcType="TIMESTAMP" />
+    <result column="MAKETIME" property="maketime" jdbcType="VARCHAR" />
+    <result column="MODIFYDATE" property="modifydate" jdbcType="TIMESTAMP" />
+    <result column="MODIFYTIME" property="modifytime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    REQUIREMENTNEWPLANID, REQUIREMENTID, INFACTANALYSISSTARTDATE, INFACTANALYSISENDDATE, 
+    INFACTDEVELOPSTARTDATE, INFACTDEVELOPENDDATE, INFACTDATTESTSTARTDATE, INFACTDATTESTENDDATE, 
+    INFACTUATTESTSTARTDATE, INFACTUATTESTENDDATE, INFACTFINISHDATE, MAKEDATE, MAKETIME, 
+    MODIFYDATE, MODIFYTIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from REQUIREMENTINFACTDATE
+    where REQUIREMENTNEWPLANID = #{requirementnewplanid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from REQUIREMENTINFACTDATE
+    where REQUIREMENTNEWPLANID = #{requirementnewplanid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.guohualife.pm.requirement.mode.RequirementInFactdate" >
+    
+    <selectKey keyProperty="requirementnewplanid" order="BEFORE" resultType="java.math.BigDecimal">
+	      SELECT SEQ_RequirementInFactdate_ID.NEXTVAL FROM DUAL 
+	  </selectKey>
+    
+    insert into REQUIREMENTINFACTDATE (REQUIREMENTNEWPLANID, REQUIREMENTID, 
+      INFACTANALYSISSTARTDATE, INFACTANALYSISENDDATE, 
+      INFACTDEVELOPSTARTDATE, INFACTDEVELOPENDDATE, 
+      INFACTDATTESTSTARTDATE, INFACTDATTESTENDDATE, 
+      INFACTUATTESTSTARTDATE, INFACTUATTESTENDDATE, 
+      INFACTFINISHDATE, MAKEDATE, MAKETIME, 
+      MODIFYDATE, MODIFYTIME)
+    values (#{requirementnewplanid,jdbcType=DECIMAL}, #{requirementid,jdbcType=DECIMAL}, 
+      #{infactanalysisstartdate,jdbcType=TIMESTAMP}, #{infactanalysisenddate,jdbcType=TIMESTAMP}, 
+      #{infactdevelopstartdate,jdbcType=TIMESTAMP}, #{infactdevelopenddate,jdbcType=TIMESTAMP}, 
+      #{infactdatteststartdate,jdbcType=TIMESTAMP}, #{infactdattestenddate,jdbcType=TIMESTAMP}, 
+      #{infactuatteststartdate,jdbcType=TIMESTAMP}, #{infactuattestenddate,jdbcType=TIMESTAMP}, 
+      #{infactfinishdate,jdbcType=TIMESTAMP}, #{makedate,jdbcType=TIMESTAMP}, #{maketime,jdbcType=VARCHAR}, 
+      #{modifydate,jdbcType=TIMESTAMP}, #{modifytime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.guohualife.pm.requirement.mode.RequirementInFactdate" >
+    insert into REQUIREMENTINFACTDATE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="requirementnewplanid != null" >
+        REQUIREMENTNEWPLANID,
+      </if>
+      <if test="requirementid != null" >
+        REQUIREMENTID,
+      </if>
+      <if test="infactanalysisstartdate != null" >
+        INFACTANALYSISSTARTDATE,
+      </if>
+      <if test="infactanalysisenddate != null" >
+        INFACTANALYSISENDDATE,
+      </if>
+      <if test="infactdevelopstartdate != null" >
+        INFACTDEVELOPSTARTDATE,
+      </if>
+      <if test="infactdevelopenddate != null" >
+        INFACTDEVELOPENDDATE,
+      </if>
+      <if test="infactdatteststartdate != null" >
+        INFACTDATTESTSTARTDATE,
+      </if>
+      <if test="infactdattestenddate != null" >
+        INFACTDATTESTENDDATE,
+      </if>
+      <if test="infactuatteststartdate != null" >
+        INFACTUATTESTSTARTDATE,
+      </if>
+      <if test="infactuattestenddate != null" >
+        INFACTUATTESTENDDATE,
+      </if>
+      <if test="infactfinishdate != null" >
+        INFACTFINISHDATE,
+      </if>
+      <if test="makedate != null" >
+        MAKEDATE,
+      </if>
+      <if test="maketime != null" >
+        MAKETIME,
+      </if>
+      <if test="modifydate != null" >
+        MODIFYDATE,
+      </if>
+      <if test="modifytime != null" >
+        MODIFYTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="requirementnewplanid != null" >
+        #{requirementnewplanid,jdbcType=DECIMAL},
+      </if>
+      <if test="requirementid != null" >
+        #{requirementid,jdbcType=DECIMAL},
+      </if>
+      <if test="infactanalysisstartdate != null" >
+        #{infactanalysisstartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infactanalysisenddate != null" >
+        #{infactanalysisenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infactdevelopstartdate != null" >
+        #{infactdevelopstartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infactdevelopenddate != null" >
+        #{infactdevelopenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infactdatteststartdate != null" >
+        #{infactdatteststartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infactdattestenddate != null" >
+        #{infactdattestenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infactuatteststartdate != null" >
+        #{infactuatteststartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infactuattestenddate != null" >
+        #{infactuattestenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infactfinishdate != null" >
+        #{infactfinishdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="makedate != null" >
+        #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maketime != null" >
+        #{maketime,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null" >
+        #{modifytime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.guohualife.pm.requirement.mode.RequirementInFactdate" >
+    update REQUIREMENTINFACTDATE
+    <set >
+      <if test="requirementid != null" >
+        REQUIREMENTID = #{requirementid,jdbcType=DECIMAL},
+      </if>
+      <if test="infactanalysisstartdate != null" >
+        INFACTANALYSISSTARTDATE = #{infactanalysisstartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infactanalysisenddate != null" >
+        INFACTANALYSISENDDATE = #{infactanalysisenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infactdevelopstartdate != null" >
+        INFACTDEVELOPSTARTDATE = #{infactdevelopstartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infactdevelopenddate != null" >
+        INFACTDEVELOPENDDATE = #{infactdevelopenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infactdatteststartdate != null" >
+        INFACTDATTESTSTARTDATE = #{infactdatteststartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infactdattestenddate != null" >
+        INFACTDATTESTENDDATE = #{infactdattestenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infactuatteststartdate != null" >
+        INFACTUATTESTSTARTDATE = #{infactuatteststartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infactuattestenddate != null" >
+        INFACTUATTESTENDDATE = #{infactuattestenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="infactfinishdate != null" >
+        INFACTFINISHDATE = #{infactfinishdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="makedate != null" >
+        MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maketime != null" >
+        MAKETIME = #{maketime,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null" >
+        MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null" >
+        MODIFYTIME = #{modifytime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where REQUIREMENTNEWPLANID = #{requirementnewplanid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.guohualife.pm.requirement.mode.RequirementInFactdate" >
+    update REQUIREMENTINFACTDATE
+    set REQUIREMENTID = #{requirementid,jdbcType=DECIMAL},
+      INFACTANALYSISSTARTDATE = #{infactanalysisstartdate,jdbcType=TIMESTAMP},
+      INFACTANALYSISENDDATE = #{infactanalysisenddate,jdbcType=TIMESTAMP},
+      INFACTDEVELOPSTARTDATE = #{infactdevelopstartdate,jdbcType=TIMESTAMP},
+      INFACTDEVELOPENDDATE = #{infactdevelopenddate,jdbcType=TIMESTAMP},
+      INFACTDATTESTSTARTDATE = #{infactdatteststartdate,jdbcType=TIMESTAMP},
+      INFACTDATTESTENDDATE = #{infactdattestenddate,jdbcType=TIMESTAMP},
+      INFACTUATTESTSTARTDATE = #{infactuatteststartdate,jdbcType=TIMESTAMP},
+      INFACTUATTESTENDDATE = #{infactuattestenddate,jdbcType=TIMESTAMP},
+      INFACTFINISHDATE = #{infactfinishdate,jdbcType=TIMESTAMP},
+      MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      MAKETIME = #{maketime,jdbcType=VARCHAR},
+      MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      MODIFYTIME = #{modifytime,jdbcType=VARCHAR}
+    where REQUIREMENTNEWPLANID = #{requirementnewplanid,jdbcType=DECIMAL}
+  </update>
+</mapper>

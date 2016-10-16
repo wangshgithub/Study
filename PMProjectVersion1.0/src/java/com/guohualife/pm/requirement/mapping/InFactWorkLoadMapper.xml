@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guohualife.pm.requirement.dao.InFactWorkLoadMapper" >
+  <resultMap id="BaseResultMap" type="com.guohualife.pm.requirement.mode.InFactWorkLoad" >
+    <id column="REQUIRENEWWORKID" property="requirenewworkid" jdbcType="DECIMAL" />
+    <result column="REQUIREMENTID" property="requirementid" jdbcType="DECIMAL" />
+    <result column="INFACTANALYSISWORKLOAD" property="infactanalysisworkload" jdbcType="DECIMAL" />
+    <result column="INFACTDEVELOPWORKLOAD" property="infactdevelopworkload" jdbcType="DECIMAL" />
+    <result column="INFACTTESTWORKLOAD" property="infacttestworkload" jdbcType="DECIMAL" />
+    <result column="INFACTSUMWORKLOAD" property="infactsumworkload" jdbcType="DECIMAL" />
+    <result column="MAKEDATE" property="makedate" jdbcType="TIMESTAMP" />
+    <result column="MAKETIME" property="maketime" jdbcType="VARCHAR" />
+    <result column="MODIFYDATE" property="modifydate" jdbcType="TIMESTAMP" />
+    <result column="MODIFYTIME" property="modifytime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    REQUIRENEWWORKID, REQUIREMENTID, INFACTANALYSISWORKLOAD, INFACTDEVELOPWORKLOAD, INFACTTESTWORKLOAD, 
+    INFACTSUMWORKLOAD, MAKEDATE, MAKETIME, MODIFYDATE, MODIFYTIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from INFACTWORKLOAD
+    where REQUIRENEWWORKID = #{requirenewworkid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from INFACTWORKLOAD
+    where REQUIRENEWWORKID = #{requirenewworkid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.guohualife.pm.requirement.mode.InFactWorkLoad" >
+    
+    <selectKey keyProperty="requirenewworkid" order="BEFORE" resultType="java.math.BigDecimal">
+	      SELECT SEQ_InFactWorkLoad_ID.NEXTVAL FROM DUAL 
+	  </selectKey>
+    
+    insert into INFACTWORKLOAD (REQUIRENEWWORKID, REQUIREMENTID, 
+      INFACTANALYSISWORKLOAD, INFACTDEVELOPWORKLOAD, 
+      INFACTTESTWORKLOAD, INFACTSUMWORKLOAD, 
+      MAKEDATE, MAKETIME, MODIFYDATE, 
+      MODIFYTIME)
+    values (#{requirenewworkid,jdbcType=DECIMAL}, #{requirementid,jdbcType=DECIMAL}, 
+      #{infactanalysisworkload,jdbcType=DECIMAL}, #{infactdevelopworkload,jdbcType=DECIMAL}, 
+      #{infacttestworkload,jdbcType=DECIMAL}, #{infactsumworkload,jdbcType=DECIMAL}, 
+      #{makedate,jdbcType=TIMESTAMP}, #{maketime,jdbcType=VARCHAR}, #{modifydate,jdbcType=TIMESTAMP}, 
+      #{modifytime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.guohualife.pm.requirement.mode.InFactWorkLoad" >
+    insert into INFACTWORKLOAD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="requirenewworkid != null" >
+        REQUIRENEWWORKID,
+      </if>
+      <if test="requirementid != null" >
+        REQUIREMENTID,
+      </if>
+      <if test="infactanalysisworkload != null" >
+        INFACTANALYSISWORKLOAD,
+      </if>
+      <if test="infactdevelopworkload != null" >
+        INFACTDEVELOPWORKLOAD,
+      </if>
+      <if test="infacttestworkload != null" >
+        INFACTTESTWORKLOAD,
+      </if>
+      <if test="infactsumworkload != null" >
+        INFACTSUMWORKLOAD,
+      </if>
+      <if test="makedate != null" >
+        MAKEDATE,
+      </if>
+      <if test="maketime != null" >
+        MAKETIME,
+      </if>
+      <if test="modifydate != null" >
+        MODIFYDATE,
+      </if>
+      <if test="modifytime != null" >
+        MODIFYTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="requirenewworkid != null" >
+        #{requirenewworkid,jdbcType=DECIMAL},
+      </if>
+      <if test="requirementid != null" >
+        #{requirementid,jdbcType=DECIMAL},
+      </if>
+      <if test="infactanalysisworkload != null" >
+        #{infactanalysisworkload,jdbcType=DECIMAL},
+      </if>
+      <if test="infactdevelopworkload != null" >
+        #{infactdevelopworkload,jdbcType=DECIMAL},
+      </if>
+      <if test="infacttestworkload != null" >
+        #{infacttestworkload,jdbcType=DECIMAL},
+      </if>
+      <if test="infactsumworkload != null" >
+        #{infactsumworkload,jdbcType=DECIMAL},
+      </if>
+      <if test="makedate != null" >
+        #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maketime != null" >
+        #{maketime,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null" >
+        #{modifytime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.guohualife.pm.requirement.mode.InFactWorkLoad" >
+    update INFACTWORKLOAD
+    <set >
+      <if test="requirementid != null" >
+        REQUIREMENTID = #{requirementid,jdbcType=DECIMAL},
+      </if>
+      <if test="infactanalysisworkload != null" >
+        INFACTANALYSISWORKLOAD = #{infactanalysisworkload,jdbcType=DECIMAL},
+      </if>
+      <if test="infactdevelopworkload != null" >
+        INFACTDEVELOPWORKLOAD = #{infactdevelopworkload,jdbcType=DECIMAL},
+      </if>
+      <if test="infacttestworkload != null" >
+        INFACTTESTWORKLOAD = #{infacttestworkload,jdbcType=DECIMAL},
+      </if>
+      <if test="infactsumworkload != null" >
+        INFACTSUMWORKLOAD = #{infactsumworkload,jdbcType=DECIMAL},
+      </if>
+      <if test="makedate != null" >
+        MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maketime != null" >
+        MAKETIME = #{maketime,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null" >
+        MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null" >
+        MODIFYTIME = #{modifytime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where REQUIRENEWWORKID = #{requirenewworkid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.guohualife.pm.requirement.mode.InFactWorkLoad" >
+    update INFACTWORKLOAD
+    set REQUIREMENTID = #{requirementid,jdbcType=DECIMAL},
+      INFACTANALYSISWORKLOAD = #{infactanalysisworkload,jdbcType=DECIMAL},
+      INFACTDEVELOPWORKLOAD = #{infactdevelopworkload,jdbcType=DECIMAL},
+      INFACTTESTWORKLOAD = #{infacttestworkload,jdbcType=DECIMAL},
+      INFACTSUMWORKLOAD = #{infactsumworkload,jdbcType=DECIMAL},
+      MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      MAKETIME = #{maketime,jdbcType=VARCHAR},
+      MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      MODIFYTIME = #{modifytime,jdbcType=VARCHAR}
+    where REQUIRENEWWORKID = #{requirenewworkid,jdbcType=DECIMAL}
+  </update>
+</mapper>

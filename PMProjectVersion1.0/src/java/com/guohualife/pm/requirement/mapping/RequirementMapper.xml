@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guohualife.pm.requirement.dao.RequirementMapper" >
+  <resultMap id="BaseResultMap" type="com.guohualife.pm.requirement.mode.Requirement" >
+    <id column="REQUIREMENTID" property="requirementid" jdbcType="DECIMAL" />
+    <result column="REQUIREMENTNO" property="requirementno" jdbcType="VARCHAR" />
+    <result column="TASKTYPE" property="tasktype" jdbcType="VARCHAR" />
+    <result column="SEQNO" property="seqno" jdbcType="VARCHAR" />
+    <result column="DEPARTMENT" property="department" jdbcType="VARCHAR" />
+    <result column="INTRODUCER" property="introducer" jdbcType="VARCHAR" />
+    <result column="ITPRINCLPAL" property="itprinclpal" jdbcType="VARCHAR" />
+    <result column="ESTIMATEWORK" property="estimatework" jdbcType="DECIMAL" />
+    <result column="REQUIREMENTDESCRIBE" property="requirementdescribe" jdbcType="VARCHAR" />
+    <result column="MODULE" property="module" jdbcType="VARCHAR" />
+    <result column="DEMANDPRIORITY" property="demandpriority" jdbcType="VARCHAR" />
+    <result column="IFURGENCY" property="ifurgency" jdbcType="VARCHAR" />
+    <result column="SETTLEMONTH" property="settlemonth" jdbcType="VARCHAR" />
+    <result column="IFSETTLE" property="ifsettle" jdbcType="VARCHAR" />
+    <result column="IFSTARTWORK" property="ifstartwork" jdbcType="VARCHAR" />
+    <result column="IFLINELIST" property="iflinelist" jdbcType="VARCHAR" />
+    <result column="IFDATMUST" property="ifdatmust" jdbcType="VARCHAR" />
+    <result column="SUMWORKLOAD" property="sumworkload" jdbcType="DECIMAL" />
+    <result column="MAKEDATE" property="makedate" jdbcType="TIMESTAMP" />
+    <result column="MAKETIME" property="maketime" jdbcType="VARCHAR" />
+    <result column="MODIFYDATE" property="modifydate" jdbcType="TIMESTAMP" />
+    <result column="MODIFYTIME" property="modifytime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    REQUIREMENTID, REQUIREMENTNO, TASKTYPE, SEQNO, DEPARTMENT, INTRODUCER, ITPRINCLPAL, 
+    ESTIMATEWORK, REQUIREMENTDESCRIBE, MODULE, DEMANDPRIORITY, IFURGENCY, SETTLEMONTH, 
+    IFSETTLE, IFSTARTWORK, IFLINELIST, IFDATMUST, SUMWORKLOAD, MAKEDATE, MAKETIME, MODIFYDATE, 
+    MODIFYTIME
+  </sql>
+  <select id="getRequirementList" resultMap="BaseResultMap">
+  	SELECT 
+    <include refid="Base_Column_List" />
+    FROM REQUIREMENT
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from REQUIREMENT
+    where REQUIREMENTID = #{requirementid,jdbcType=DECIMAL}
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from REQUIREMENT
+    where REQUIREMENTID = #{requirementid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.guohualife.pm.requirement.mode.Requirement" >
+  	
+  	<selectKey keyProperty="requirementid" order="BEFORE" resultType="java.math.BigDecimal">
+	      SELECT SEQ_REQUIREMENT_ID.NEXTVAL FROM DUAL 
+	  </selectKey>
+  	
+    insert into REQUIREMENT (REQUIREMENTID, REQUIREMENTNO, TASKTYPE, 
+      SEQNO, DEPARTMENT, INTRODUCER, 
+      ITPRINCLPAL, ESTIMATEWORK, REQUIREMENTDESCRIBE, 
+      MODULE, DEMANDPRIORITY, IFURGENCY, 
+      SETTLEMONTH, IFSETTLE, IFSTARTWORK, 
+      IFLINELIST, IFDATMUST, SUMWORKLOAD, 
+      MAKEDATE, MAKETIME, MODIFYDATE, 
+      MODIFYTIME)
+    values (#{requirementid,jdbcType=DECIMAL}, #{requirementno,jdbcType=VARCHAR}, #{tasktype,jdbcType=VARCHAR}, 
+      #{seqno,jdbcType=VARCHAR}, #{department,jdbcType=VARCHAR}, #{introducer,jdbcType=VARCHAR}, 
+      #{itprinclpal,jdbcType=VARCHAR}, #{estimatework,jdbcType=DECIMAL}, #{requirementdescribe,jdbcType=VARCHAR}, 
+      #{module,jdbcType=VARCHAR}, #{demandpriority,jdbcType=VARCHAR}, #{ifurgency,jdbcType=VARCHAR}, 
+      #{settlemonth,jdbcType=VARCHAR}, #{ifsettle,jdbcType=VARCHAR}, #{ifstartwork,jdbcType=VARCHAR}, 
+      #{iflinelist,jdbcType=VARCHAR}, #{ifdatmust,jdbcType=VARCHAR}, #{sumworkload,jdbcType=DECIMAL}, 
+      #{makedate,jdbcType=TIMESTAMP}, #{maketime,jdbcType=VARCHAR}, #{modifydate,jdbcType=TIMESTAMP}, 
+      #{modifytime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.guohualife.pm.requirement.mode.Requirement" >
+    insert into REQUIREMENT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="requirementid != null" >
+        REQUIREMENTID,
+      </if>
+      <if test="requirementno != null" >
+        REQUIREMENTNO,
+      </if>
+      <if test="tasktype != null" >
+        TASKTYPE,
+      </if>
+      <if test="seqno != null" >
+        SEQNO,
+      </if>
+      <if test="department != null" >
+        DEPARTMENT,
+      </if>
+      <if test="introducer != null" >
+        INTRODUCER,
+      </if>
+      <if test="itprinclpal != null" >
+        ITPRINCLPAL,
+      </if>
+      <if test="estimatework != null" >
+        ESTIMATEWORK,
+      </if>
+      <if test="requirementdescribe != null" >
+        REQUIREMENTDESCRIBE,
+      </if>
+      <if test="module != null" >
+        MODULE,
+      </if>
+      <if test="demandpriority != null" >
+        DEMANDPRIORITY,
+      </if>
+      <if test="ifurgency != null" >
+        IFURGENCY,
+      </if>
+      <if test="settlemonth != null" >
+        SETTLEMONTH,
+      </if>
+      <if test="ifsettle != null" >
+        IFSETTLE,
+      </if>
+      <if test="ifstartwork != null" >
+        IFSTARTWORK,
+      </if>
+      <if test="iflinelist != null" >
+        IFLINELIST,
+      </if>
+      <if test="ifdatmust != null" >
+        IFDATMUST,
+      </if>
+      <if test="sumworkload != null" >
+        SUMWORKLOAD,
+      </if>
+      <if test="makedate != null" >
+        MAKEDATE,
+      </if>
+      <if test="maketime != null" >
+        MAKETIME,
+      </if>
+      <if test="modifydate != null" >
+        MODIFYDATE,
+      </if>
+      <if test="modifytime != null" >
+        MODIFYTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="requirementid != null" >
+        #{requirementid,jdbcType=DECIMAL},
+      </if>
+      <if test="requirementno != null" >
+        #{requirementno,jdbcType=VARCHAR},
+      </if>
+      <if test="tasktype != null" >
+        #{tasktype,jdbcType=VARCHAR},
+      </if>
+      <if test="seqno != null" >
+        #{seqno,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="introducer != null" >
+        #{introducer,jdbcType=VARCHAR},
+      </if>
+      <if test="itprinclpal != null" >
+        #{itprinclpal,jdbcType=VARCHAR},
+      </if>
+      <if test="estimatework != null" >
+        #{estimatework,jdbcType=DECIMAL},
+      </if>
+      <if test="requirementdescribe != null" >
+        #{requirementdescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="module != null" >
+        #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="demandpriority != null" >
+        #{demandpriority,jdbcType=VARCHAR},
+      </if>
+      <if test="ifurgency != null" >
+        #{ifurgency,jdbcType=VARCHAR},
+      </if>
+      <if test="settlemonth != null" >
+        #{settlemonth,jdbcType=VARCHAR},
+      </if>
+      <if test="ifsettle != null" >
+        #{ifsettle,jdbcType=VARCHAR},
+      </if>
+      <if test="ifstartwork != null" >
+        #{ifstartwork,jdbcType=VARCHAR},
+      </if>
+      <if test="iflinelist != null" >
+        #{iflinelist,jdbcType=VARCHAR},
+      </if>
+      <if test="ifdatmust != null" >
+        #{ifdatmust,jdbcType=VARCHAR},
+      </if>
+      <if test="sumworkload != null" >
+        #{sumworkload,jdbcType=DECIMAL},
+      </if>
+      <if test="makedate != null" >
+        #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maketime != null" >
+        #{maketime,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null" >
+        #{modifytime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.guohualife.pm.requirement.mode.Requirement" >
+    update REQUIREMENT
+    <set >
+      <if test="requirementno != null" >
+        REQUIREMENTNO = #{requirementno,jdbcType=VARCHAR},
+      </if>
+      <if test="tasktype != null" >
+        TASKTYPE = #{tasktype,jdbcType=VARCHAR},
+      </if>
+      <if test="seqno != null" >
+        SEQNO = #{seqno,jdbcType=VARCHAR},
+      </if>
+      <if test="department != null" >
+        DEPARTMENT = #{department,jdbcType=VARCHAR},
+      </if>
+      <if test="introducer != null" >
+        INTRODUCER = #{introducer,jdbcType=VARCHAR},
+      </if>
+      <if test="itprinclpal != null" >
+        ITPRINCLPAL = #{itprinclpal,jdbcType=VARCHAR},
+      </if>
+      <if test="estimatework != null" >
+        ESTIMATEWORK = #{estimatework,jdbcType=DECIMAL},
+      </if>
+      <if test="requirementdescribe != null" >
+        REQUIREMENTDESCRIBE = #{requirementdescribe,jdbcType=VARCHAR},
+      </if>
+      <if test="module != null" >
+        MODULE = #{module,jdbcType=VARCHAR},
+      </if>
+      <if test="demandpriority != null" >
+        DEMANDPRIORITY = #{demandpriority,jdbcType=VARCHAR},
+      </if>
+      <if test="ifurgency != null" >
+        IFURGENCY = #{ifurgency,jdbcType=VARCHAR},
+      </if>
+      <if test="settlemonth != null" >
+        SETTLEMONTH = #{settlemonth,jdbcType=VARCHAR},
+      </if>
+      <if test="ifsettle != null" >
+        IFSETTLE = #{ifsettle,jdbcType=VARCHAR},
+      </if>
+      <if test="ifstartwork != null" >
+        IFSTARTWORK = #{ifstartwork,jdbcType=VARCHAR},
+      </if>
+      <if test="iflinelist != null" >
+        IFLINELIST = #{iflinelist,jdbcType=VARCHAR},
+      </if>
+      <if test="ifdatmust != null" >
+        IFDATMUST = #{ifdatmust,jdbcType=VARCHAR},
+      </if>
+      <if test="sumworkload != null" >
+        SUMWORKLOAD = #{sumworkload,jdbcType=DECIMAL},
+      </if>
+      <if test="makedate != null" >
+        MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maketime != null" >
+        MAKETIME = #{maketime,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null" >
+        MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null" >
+        MODIFYTIME = #{modifytime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where REQUIREMENTID = #{requirementid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.guohualife.pm.requirement.mode.Requirement" >
+    update REQUIREMENT
+    set REQUIREMENTNO = #{requirementno,jdbcType=VARCHAR},
+      TASKTYPE = #{tasktype,jdbcType=VARCHAR},
+      SEQNO = #{seqno,jdbcType=VARCHAR},
+      DEPARTMENT = #{department,jdbcType=VARCHAR},
+      INTRODUCER = #{introducer,jdbcType=VARCHAR},
+      ITPRINCLPAL = #{itprinclpal,jdbcType=VARCHAR},
+      ESTIMATEWORK = #{estimatework,jdbcType=DECIMAL},
+      REQUIREMENTDESCRIBE = #{requirementdescribe,jdbcType=VARCHAR},
+      MODULE = #{module,jdbcType=VARCHAR},
+      DEMANDPRIORITY = #{demandpriority,jdbcType=VARCHAR},
+      IFURGENCY = #{ifurgency,jdbcType=VARCHAR},
+      SETTLEMONTH = #{settlemonth,jdbcType=VARCHAR},
+      IFSETTLE = #{ifsettle,jdbcType=VARCHAR},
+      IFSTARTWORK = #{ifstartwork,jdbcType=VARCHAR},
+      IFLINELIST = #{iflinelist,jdbcType=VARCHAR},
+      IFDATMUST = #{ifdatmust,jdbcType=VARCHAR},
+      SUMWORKLOAD = #{sumworkload,jdbcType=DECIMAL},
+      MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      MAKETIME = #{maketime,jdbcType=VARCHAR},
+      MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      MODIFYTIME = #{modifytime,jdbcType=VARCHAR}
+    where REQUIREMENTID = #{requirementid,jdbcType=DECIMAL}
+  </update>
+</mapper>

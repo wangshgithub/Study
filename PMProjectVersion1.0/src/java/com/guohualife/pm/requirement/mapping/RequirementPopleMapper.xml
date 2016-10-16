@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guohualife.pm.requirement.dao.RequirementPopleMapper" >
+  <resultMap id="BaseResultMap" type="com.guohualife.pm.requirement.mode.RequirementPople" >
+    <id column="REQUIREMENTRELATIONID" property="requirementrelationid" jdbcType="DECIMAL" />
+    <result column="REQUIREMENTID" property="requirementid" jdbcType="DECIMAL" />
+    <result column="REQUIREMENTSTATE" property="requirementstate" jdbcType="VARCHAR" />
+    <result column="STATEREMARK" property="stateremark" jdbcType="VARCHAR" />
+    <result column="PRINCIPALACCOUNT" property="principalaccount" jdbcType="VARCHAR" />
+    <result column="REQUIREANALYSISACCOUNT" property="requireanalysisaccount" jdbcType="VARCHAR" />
+    <result column="REQUIREDEVELOPACCOUNT" property="requiredevelopaccount" jdbcType="VARCHAR" />
+    <result column="REQUIRETESTACCOUNT" property="requiretestaccount" jdbcType="VARCHAR" />
+    <result column="MAKEDATE" property="makedate" jdbcType="TIMESTAMP" />
+    <result column="MAKETIME" property="maketime" jdbcType="VARCHAR" />
+    <result column="MODIFYDATE" property="modifydate" jdbcType="TIMESTAMP" />
+    <result column="MODIFYTIME" property="modifytime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    REQUIREMENTRELATIONID, REQUIREMENTID, REQUIREMENTSTATE, STATEREMARK, PRINCIPALACCOUNT, 
+    REQUIREANALYSISACCOUNT, REQUIREDEVELOPACCOUNT, REQUIRETESTACCOUNT, MAKEDATE, MAKETIME, 
+    MODIFYDATE, MODIFYTIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from REQUIREMENTPOPLE
+    where REQUIREMENTRELATIONID = #{requirementrelationid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from REQUIREMENTPOPLE
+    where REQUIREMENTRELATIONID = #{requirementrelationid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.guohualife.pm.requirement.mode.RequirementPople" >
+   
+    <selectKey keyProperty="requirementrelationid" order="BEFORE" resultType="java.math.BigDecimal">
+	      SELECT SEQ_RequirementPople_ID.NEXTVAL FROM DUAL 
+	  </selectKey>
+   
+    insert into REQUIREMENTPOPLE (REQUIREMENTRELATIONID, REQUIREMENTID, 
+      REQUIREMENTSTATE, STATEREMARK, PRINCIPALACCOUNT, 
+      REQUIREANALYSISACCOUNT, REQUIREDEVELOPACCOUNT, 
+      REQUIRETESTACCOUNT, MAKEDATE, MAKETIME, 
+      MODIFYDATE, MODIFYTIME)
+    values (#{requirementrelationid,jdbcType=DECIMAL}, #{requirementid,jdbcType=DECIMAL}, 
+      #{requirementstate,jdbcType=VARCHAR}, #{stateremark,jdbcType=VARCHAR}, #{principalaccount,jdbcType=VARCHAR}, 
+      #{requireanalysisaccount,jdbcType=VARCHAR}, #{requiredevelopaccount,jdbcType=VARCHAR}, 
+      #{requiretestaccount,jdbcType=VARCHAR}, #{makedate,jdbcType=TIMESTAMP}, #{maketime,jdbcType=VARCHAR}, 
+      #{modifydate,jdbcType=TIMESTAMP}, #{modifytime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.guohualife.pm.requirement.mode.RequirementPople" >
+    insert into REQUIREMENTPOPLE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="requirementrelationid != null" >
+        REQUIREMENTRELATIONID,
+      </if>
+      <if test="requirementid != null" >
+        REQUIREMENTID,
+      </if>
+      <if test="requirementstate != null" >
+        REQUIREMENTSTATE,
+      </if>
+      <if test="stateremark != null" >
+        STATEREMARK,
+      </if>
+      <if test="principalaccount != null" >
+        PRINCIPALACCOUNT,
+      </if>
+      <if test="requireanalysisaccount != null" >
+        REQUIREANALYSISACCOUNT,
+      </if>
+      <if test="requiredevelopaccount != null" >
+        REQUIREDEVELOPACCOUNT,
+      </if>
+      <if test="requiretestaccount != null" >
+        REQUIRETESTACCOUNT,
+      </if>
+      <if test="makedate != null" >
+        MAKEDATE,
+      </if>
+      <if test="maketime != null" >
+        MAKETIME,
+      </if>
+      <if test="modifydate != null" >
+        MODIFYDATE,
+      </if>
+      <if test="modifytime != null" >
+        MODIFYTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="requirementrelationid != null" >
+        #{requirementrelationid,jdbcType=DECIMAL},
+      </if>
+      <if test="requirementid != null" >
+        #{requirementid,jdbcType=DECIMAL},
+      </if>
+      <if test="requirementstate != null" >
+        #{requirementstate,jdbcType=VARCHAR},
+      </if>
+      <if test="stateremark != null" >
+        #{stateremark,jdbcType=VARCHAR},
+      </if>
+      <if test="principalaccount != null" >
+        #{principalaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="requireanalysisaccount != null" >
+        #{requireanalysisaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="requiredevelopaccount != null" >
+        #{requiredevelopaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="requiretestaccount != null" >
+        #{requiretestaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="makedate != null" >
+        #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maketime != null" >
+        #{maketime,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null" >
+        #{modifytime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.guohualife.pm.requirement.mode.RequirementPople" >
+    update REQUIREMENTPOPLE
+    <set >
+      <if test="requirementid != null" >
+        REQUIREMENTID = #{requirementid,jdbcType=DECIMAL},
+      </if>
+      <if test="requirementstate != null" >
+        REQUIREMENTSTATE = #{requirementstate,jdbcType=VARCHAR},
+      </if>
+      <if test="stateremark != null" >
+        STATEREMARK = #{stateremark,jdbcType=VARCHAR},
+      </if>
+      <if test="principalaccount != null" >
+        PRINCIPALACCOUNT = #{principalaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="requireanalysisaccount != null" >
+        REQUIREANALYSISACCOUNT = #{requireanalysisaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="requiredevelopaccount != null" >
+        REQUIREDEVELOPACCOUNT = #{requiredevelopaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="requiretestaccount != null" >
+        REQUIRETESTACCOUNT = #{requiretestaccount,jdbcType=VARCHAR},
+      </if>
+      <if test="makedate != null" >
+        MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maketime != null" >
+        MAKETIME = #{maketime,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null" >
+        MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null" >
+        MODIFYTIME = #{modifytime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where REQUIREMENTRELATIONID = #{requirementrelationid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.guohualife.pm.requirement.mode.RequirementPople" >
+    update REQUIREMENTPOPLE
+    set REQUIREMENTID = #{requirementid,jdbcType=DECIMAL},
+      REQUIREMENTSTATE = #{requirementstate,jdbcType=VARCHAR},
+      STATEREMARK = #{stateremark,jdbcType=VARCHAR},
+      PRINCIPALACCOUNT = #{principalaccount,jdbcType=VARCHAR},
+      REQUIREANALYSISACCOUNT = #{requireanalysisaccount,jdbcType=VARCHAR},
+      REQUIREDEVELOPACCOUNT = #{requiredevelopaccount,jdbcType=VARCHAR},
+      REQUIRETESTACCOUNT = #{requiretestaccount,jdbcType=VARCHAR},
+      MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      MAKETIME = #{maketime,jdbcType=VARCHAR},
+      MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      MODIFYTIME = #{modifytime,jdbcType=VARCHAR}
+    where REQUIREMENTRELATIONID = #{requirementrelationid,jdbcType=DECIMAL}
+  </update>
+</mapper>

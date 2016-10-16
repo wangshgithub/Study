@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxool-config>
+ <proxool>
+  <alias>xunjia</alias><!-- 为该连接池起一个别名，在其他文件中引用。引用是：(proxool.lis)  -->
+  <driver-url>jdbc:oracle:thin:@127.0.0.1:1521:myoralce</driver-url>
+  <driver-class>oracle.jdbc.driver.OracleDriver</driver-class>
+  <driver-properties>
+   <property name="user" value="xunjia" />
+   <property name="password" value="xunjia" />
+  </driver-properties>
+  <house-keeping-sleep-time>90000</house-keeping-sleep-time>
+  <!--proxool自动侦察各个连接状态的时间间隔(毫秒),侦察到空闲的连接就马上回收,超时的销毁 -->
+  <maximum-new-connections>5</maximum-new-connections>
+  <!--指因未有空闲连接可以分配而在队列中等候的最大请求数,超过这个请求数的用户连接就不会被接受-->
+  <prototype-count>3</prototype-count>
+  <!--最少保持的空闲连接数 -->
+  <maximum-connection-count>5</maximum-connection-count>
+  <!--  允许最大连接数,超过了这个连接，再有请求时，就排在队列中等候，最大的等待请求数由maximum-new-connections决定-->
+  <minimum-connection-count>2</minimum-connection-count>
+  <!-- 最小连接数   -->
+  </proxool>
+</proxool-config>

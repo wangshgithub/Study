@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guohualife.pm.requirement.dao.EstimateWorkLoadMapper" >
+  <resultMap id="BaseResultMap" type="com.guohualife.pm.requirement.mode.EstimateWorkLoad" >
+    <id column="REQUIREOLDWORKID" property="requireoldworkid" jdbcType="DECIMAL" />
+    <result column="REQUIREMENTID" property="requirementid" jdbcType="DECIMAL" />
+    <result column="ESTIMATEANALYSISWORKLOAD" property="estimateanalysisworkload" jdbcType="DECIMAL" />
+    <result column="ESTIMATEDEVELOPWORKLOAD" property="estimatedevelopworkload" jdbcType="DECIMAL" />
+    <result column="ESTIMATETESTWORKLOAD" property="estimatetestworkload" jdbcType="DECIMAL" />
+    <result column="ESTIMATESUMWORKLOAD" property="estimatesumworkload" jdbcType="DECIMAL" />
+    <result column="MAKEDATE" property="makedate" jdbcType="TIMESTAMP" />
+    <result column="MAKETIME" property="maketime" jdbcType="VARCHAR" />
+    <result column="MODIFYDATE" property="modifydate" jdbcType="TIMESTAMP" />
+    <result column="MODIFYTIME" property="modifytime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    REQUIREOLDWORKID, REQUIREMENTID, ESTIMATEANALYSISWORKLOAD, ESTIMATEDEVELOPWORKLOAD, 
+    ESTIMATETESTWORKLOAD, ESTIMATESUMWORKLOAD, MAKEDATE, MAKETIME, MODIFYDATE, MODIFYTIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from ESTIMATEWORKLOAD
+    where REQUIREOLDWORKID = #{requireoldworkid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from ESTIMATEWORKLOAD
+    where REQUIREOLDWORKID = #{requireoldworkid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.guohualife.pm.requirement.mode.EstimateWorkLoad" >
+    
+     <selectKey keyProperty="requireoldworkid" order="BEFORE" resultType="java.math.BigDecimal">
+	      SELECT SEQ_EstimateWorkLoad_ID.NEXTVAL FROM DUAL 
+	  </selectKey>
+    
+    insert into ESTIMATEWORKLOAD (REQUIREOLDWORKID, REQUIREMENTID, 
+      ESTIMATEANALYSISWORKLOAD, ESTIMATEDEVELOPWORKLOAD, 
+      ESTIMATETESTWORKLOAD, ESTIMATESUMWORKLOAD, 
+      MAKEDATE, MAKETIME, MODIFYDATE, 
+      MODIFYTIME)
+    values (#{requireoldworkid,jdbcType=DECIMAL}, #{requirementid,jdbcType=DECIMAL}, 
+      #{estimateanalysisworkload,jdbcType=DECIMAL}, #{estimatedevelopworkload,jdbcType=DECIMAL}, 
+      #{estimatetestworkload,jdbcType=DECIMAL}, #{estimatesumworkload,jdbcType=DECIMAL}, 
+      #{makedate,jdbcType=TIMESTAMP}, #{maketime,jdbcType=VARCHAR}, #{modifydate,jdbcType=TIMESTAMP}, 
+      #{modifytime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.guohualife.pm.requirement.mode.EstimateWorkLoad" >
+    insert into ESTIMATEWORKLOAD
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="requireoldworkid != null" >
+        REQUIREOLDWORKID,
+      </if>
+      <if test="requirementid != null" >
+        REQUIREMENTID,
+      </if>
+      <if test="estimateanalysisworkload != null" >
+        ESTIMATEANALYSISWORKLOAD,
+      </if>
+      <if test="estimatedevelopworkload != null" >
+        ESTIMATEDEVELOPWORKLOAD,
+      </if>
+      <if test="estimatetestworkload != null" >
+        ESTIMATETESTWORKLOAD,
+      </if>
+      <if test="estimatesumworkload != null" >
+        ESTIMATESUMWORKLOAD,
+      </if>
+      <if test="makedate != null" >
+        MAKEDATE,
+      </if>
+      <if test="maketime != null" >
+        MAKETIME,
+      </if>
+      <if test="modifydate != null" >
+        MODIFYDATE,
+      </if>
+      <if test="modifytime != null" >
+        MODIFYTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="requireoldworkid != null" >
+        #{requireoldworkid,jdbcType=DECIMAL},
+      </if>
+      <if test="requirementid != null" >
+        #{requirementid,jdbcType=DECIMAL},
+      </if>
+      <if test="estimateanalysisworkload != null" >
+        #{estimateanalysisworkload,jdbcType=DECIMAL},
+      </if>
+      <if test="estimatedevelopworkload != null" >
+        #{estimatedevelopworkload,jdbcType=DECIMAL},
+      </if>
+      <if test="estimatetestworkload != null" >
+        #{estimatetestworkload,jdbcType=DECIMAL},
+      </if>
+      <if test="estimatesumworkload != null" >
+        #{estimatesumworkload,jdbcType=DECIMAL},
+      </if>
+      <if test="makedate != null" >
+        #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maketime != null" >
+        #{maketime,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null" >
+        #{modifytime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.guohualife.pm.requirement.mode.EstimateWorkLoad" >
+    update ESTIMATEWORKLOAD
+    <set >
+      <if test="requirementid != null" >
+        REQUIREMENTID = #{requirementid,jdbcType=DECIMAL},
+      </if>
+      <if test="estimateanalysisworkload != null" >
+        ESTIMATEANALYSISWORKLOAD = #{estimateanalysisworkload,jdbcType=DECIMAL},
+      </if>
+      <if test="estimatedevelopworkload != null" >
+        ESTIMATEDEVELOPWORKLOAD = #{estimatedevelopworkload,jdbcType=DECIMAL},
+      </if>
+      <if test="estimatetestworkload != null" >
+        ESTIMATETESTWORKLOAD = #{estimatetestworkload,jdbcType=DECIMAL},
+      </if>
+      <if test="estimatesumworkload != null" >
+        ESTIMATESUMWORKLOAD = #{estimatesumworkload,jdbcType=DECIMAL},
+      </if>
+      <if test="makedate != null" >
+        MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maketime != null" >
+        MAKETIME = #{maketime,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null" >
+        MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null" >
+        MODIFYTIME = #{modifytime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where REQUIREOLDWORKID = #{requireoldworkid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.guohualife.pm.requirement.mode.EstimateWorkLoad" >
+    update ESTIMATEWORKLOAD
+    set REQUIREMENTID = #{requirementid,jdbcType=DECIMAL},
+      ESTIMATEANALYSISWORKLOAD = #{estimateanalysisworkload,jdbcType=DECIMAL},
+      ESTIMATEDEVELOPWORKLOAD = #{estimatedevelopworkload,jdbcType=DECIMAL},
+      ESTIMATETESTWORKLOAD = #{estimatetestworkload,jdbcType=DECIMAL},
+      ESTIMATESUMWORKLOAD = #{estimatesumworkload,jdbcType=DECIMAL},
+      MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      MAKETIME = #{maketime,jdbcType=VARCHAR},
+      MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      MODIFYTIME = #{modifytime,jdbcType=VARCHAR}
+    where REQUIREOLDWORKID = #{requireoldworkid,jdbcType=DECIMAL}
+  </update>
+</mapper>

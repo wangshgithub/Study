@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.guohualife.pm.requirement.dao.RequirementEstimatedateMapper" >
+  <resultMap id="BaseResultMap" type="com.guohualife.pm.requirement.mode.RequirementEstimatedate" >
+    <id column="REQUIREMENTOLDPLANID" property="requirementoldplanid" jdbcType="DECIMAL" />
+    <result column="REQUIREMENTID" property="requirementid" jdbcType="DECIMAL" />
+    <result column="ESTIMATEANALYSISSTARTDATE" property="estimateanalysisstartdate" jdbcType="TIMESTAMP" />
+    <result column="ESTIMATEANALYSISENDDATE" property="estimateanalysisenddate" jdbcType="TIMESTAMP" />
+    <result column="ESTIMATEDEVELOPSTARTDATE" property="estimatedevelopstartdate" jdbcType="TIMESTAMP" />
+    <result column="ESTIMATEDEVELOEENDDATE" property="estimatedeveloeenddate" jdbcType="TIMESTAMP" />
+    <result column="ESTIMATEDATTESTSTARTDATE" property="estimatedatteststartdate" jdbcType="TIMESTAMP" />
+    <result column="ESTIMATEDATTESTENDDATE" property="estimatedattestenddate" jdbcType="TIMESTAMP" />
+    <result column="ESTIMATEUATTESTSTARTDATE" property="estimateuatteststartdate" jdbcType="TIMESTAMP" />
+    <result column="ESTIMATEUATTESTENDDATE" property="estimateuattestenddate" jdbcType="TIMESTAMP" />
+    <result column="ESTIMATEFINISHDATE" property="estimatefinishdate" jdbcType="TIMESTAMP" />
+    <result column="MAKEDATE" property="makedate" jdbcType="TIMESTAMP" />
+    <result column="MAKETIME" property="maketime" jdbcType="VARCHAR" />
+    <result column="MODIFYDATE" property="modifydate" jdbcType="TIMESTAMP" />
+    <result column="MODIFYTIME" property="modifytime" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    REQUIREMENTOLDPLANID, REQUIREMENTID, ESTIMATEANALYSISSTARTDATE, ESTIMATEANALYSISENDDATE, 
+    ESTIMATEDEVELOPSTARTDATE, ESTIMATEDEVELOEENDDATE, ESTIMATEDATTESTSTARTDATE, ESTIMATEDATTESTENDDATE, 
+    ESTIMATEUATTESTSTARTDATE, ESTIMATEUATTESTENDDATE, ESTIMATEFINISHDATE, MAKEDATE, MAKETIME, 
+    MODIFYDATE, MODIFYTIME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.math.BigDecimal" >
+    select 
+    <include refid="Base_Column_List" />
+    from REQUIREMENTESTIMATEDATE
+    where REQUIREMENTOLDPLANID = #{requirementoldplanid,jdbcType=DECIMAL}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.math.BigDecimal" >
+    delete from REQUIREMENTESTIMATEDATE
+    where REQUIREMENTOLDPLANID = #{requirementoldplanid,jdbcType=DECIMAL}
+  </delete>
+  <insert id="insert" parameterType="com.guohualife.pm.requirement.mode.RequirementEstimatedate" >
+  
+    <selectKey keyProperty="requirementoldplanid" order="BEFORE" resultType="java.math.BigDecimal">
+	      SELECT SEQ_RequirementEstimatedate_ID.NEXTVAL FROM DUAL 
+	  </selectKey>
+  
+    insert into REQUIREMENTESTIMATEDATE (REQUIREMENTOLDPLANID, REQUIREMENTID, 
+      ESTIMATEANALYSISSTARTDATE, ESTIMATEANALYSISENDDATE, 
+      ESTIMATEDEVELOPSTARTDATE, ESTIMATEDEVELOEENDDATE, 
+      ESTIMATEDATTESTSTARTDATE, ESTIMATEDATTESTENDDATE, 
+      ESTIMATEUATTESTSTARTDATE, ESTIMATEUATTESTENDDATE, 
+      ESTIMATEFINISHDATE, MAKEDATE, MAKETIME, 
+      MODIFYDATE, MODIFYTIME)
+    values (#{requirementoldplanid,jdbcType=DECIMAL}, #{requirementid,jdbcType=DECIMAL}, 
+      #{estimateanalysisstartdate,jdbcType=TIMESTAMP}, #{estimateanalysisenddate,jdbcType=TIMESTAMP}, 
+      #{estimatedevelopstartdate,jdbcType=TIMESTAMP}, #{estimatedeveloeenddate,jdbcType=TIMESTAMP}, 
+      #{estimatedatteststartdate,jdbcType=TIMESTAMP}, #{estimatedattestenddate,jdbcType=TIMESTAMP}, 
+      #{estimateuatteststartdate,jdbcType=TIMESTAMP}, #{estimateuattestenddate,jdbcType=TIMESTAMP}, 
+      #{estimatefinishdate,jdbcType=TIMESTAMP}, #{makedate,jdbcType=TIMESTAMP}, #{maketime,jdbcType=VARCHAR}, 
+      #{modifydate,jdbcType=TIMESTAMP}, #{modifytime,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.guohualife.pm.requirement.mode.RequirementEstimatedate" >
+    insert into REQUIREMENTESTIMATEDATE
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="requirementoldplanid != null" >
+        REQUIREMENTOLDPLANID,
+      </if>
+      <if test="requirementid != null" >
+        REQUIREMENTID,
+      </if>
+      <if test="estimateanalysisstartdate != null" >
+        ESTIMATEANALYSISSTARTDATE,
+      </if>
+      <if test="estimateanalysisenddate != null" >
+        ESTIMATEANALYSISENDDATE,
+      </if>
+      <if test="estimatedevelopstartdate != null" >
+        ESTIMATEDEVELOPSTARTDATE,
+      </if>
+      <if test="estimatedeveloeenddate != null" >
+        ESTIMATEDEVELOEENDDATE,
+      </if>
+      <if test="estimatedatteststartdate != null" >
+        ESTIMATEDATTESTSTARTDATE,
+      </if>
+      <if test="estimatedattestenddate != null" >
+        ESTIMATEDATTESTENDDATE,
+      </if>
+      <if test="estimateuatteststartdate != null" >
+        ESTIMATEUATTESTSTARTDATE,
+      </if>
+      <if test="estimateuattestenddate != null" >
+        ESTIMATEUATTESTENDDATE,
+      </if>
+      <if test="estimatefinishdate != null" >
+        ESTIMATEFINISHDATE,
+      </if>
+      <if test="makedate != null" >
+        MAKEDATE,
+      </if>
+      <if test="maketime != null" >
+        MAKETIME,
+      </if>
+      <if test="modifydate != null" >
+        MODIFYDATE,
+      </if>
+      <if test="modifytime != null" >
+        MODIFYTIME,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="requirementoldplanid != null" >
+        #{requirementoldplanid,jdbcType=DECIMAL},
+      </if>
+      <if test="requirementid != null" >
+        #{requirementid,jdbcType=DECIMAL},
+      </if>
+      <if test="estimateanalysisstartdate != null" >
+        #{estimateanalysisstartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estimateanalysisenddate != null" >
+        #{estimateanalysisenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estimatedevelopstartdate != null" >
+        #{estimatedevelopstartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estimatedeveloeenddate != null" >
+        #{estimatedeveloeenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estimatedatteststartdate != null" >
+        #{estimatedatteststartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estimatedattestenddate != null" >
+        #{estimatedattestenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estimateuatteststartdate != null" >
+        #{estimateuatteststartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estimateuattestenddate != null" >
+        #{estimateuattestenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estimatefinishdate != null" >
+        #{estimatefinishdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="makedate != null" >
+        #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maketime != null" >
+        #{maketime,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null" >
+        #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null" >
+        #{modifytime,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.guohualife.pm.requirement.mode.RequirementEstimatedate" >
+    update REQUIREMENTESTIMATEDATE
+    <set >
+      <if test="requirementid != null" >
+        REQUIREMENTID = #{requirementid,jdbcType=DECIMAL},
+      </if>
+      <if test="estimateanalysisstartdate != null" >
+        ESTIMATEANALYSISSTARTDATE = #{estimateanalysisstartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estimateanalysisenddate != null" >
+        ESTIMATEANALYSISENDDATE = #{estimateanalysisenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estimatedevelopstartdate != null" >
+        ESTIMATEDEVELOPSTARTDATE = #{estimatedevelopstartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estimatedeveloeenddate != null" >
+        ESTIMATEDEVELOEENDDATE = #{estimatedeveloeenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estimatedatteststartdate != null" >
+        ESTIMATEDATTESTSTARTDATE = #{estimatedatteststartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estimatedattestenddate != null" >
+        ESTIMATEDATTESTENDDATE = #{estimatedattestenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estimateuatteststartdate != null" >
+        ESTIMATEUATTESTSTARTDATE = #{estimateuatteststartdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estimateuattestenddate != null" >
+        ESTIMATEUATTESTENDDATE = #{estimateuattestenddate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="estimatefinishdate != null" >
+        ESTIMATEFINISHDATE = #{estimatefinishdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="makedate != null" >
+        MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="maketime != null" >
+        MAKETIME = #{maketime,jdbcType=VARCHAR},
+      </if>
+      <if test="modifydate != null" >
+        MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifytime != null" >
+        MODIFYTIME = #{modifytime,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where REQUIREMENTOLDPLANID = #{requirementoldplanid,jdbcType=DECIMAL}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.guohualife.pm.requirement.mode.RequirementEstimatedate" >
+    update REQUIREMENTESTIMATEDATE
+    set REQUIREMENTID = #{requirementid,jdbcType=DECIMAL},
+      ESTIMATEANALYSISSTARTDATE = #{estimateanalysisstartdate,jdbcType=TIMESTAMP},
+      ESTIMATEANALYSISENDDATE = #{estimateanalysisenddate,jdbcType=TIMESTAMP},
+      ESTIMATEDEVELOPSTARTDATE = #{estimatedevelopstartdate,jdbcType=TIMESTAMP},
+      ESTIMATEDEVELOEENDDATE = #{estimatedeveloeenddate,jdbcType=TIMESTAMP},
+      ESTIMATEDATTESTSTARTDATE = #{estimatedatteststartdate,jdbcType=TIMESTAMP},
+      ESTIMATEDATTESTENDDATE = #{estimatedattestenddate,jdbcType=TIMESTAMP},
+      ESTIMATEUATTESTSTARTDATE = #{estimateuatteststartdate,jdbcType=TIMESTAMP},
+      ESTIMATEUATTESTENDDATE = #{estimateuattestenddate,jdbcType=TIMESTAMP},
+      ESTIMATEFINISHDATE = #{estimatefinishdate,jdbcType=TIMESTAMP},
+      MAKEDATE = #{makedate,jdbcType=TIMESTAMP},
+      MAKETIME = #{maketime,jdbcType=VARCHAR},
+      MODIFYDATE = #{modifydate,jdbcType=TIMESTAMP},
+      MODIFYTIME = #{modifytime,jdbcType=VARCHAR}
+    where REQUIREMENTOLDPLANID = #{requirementoldplanid,jdbcType=DECIMAL}
+  </update>
+</mapper>
